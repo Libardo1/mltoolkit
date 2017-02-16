@@ -61,7 +61,7 @@ To apply SGD we need to calculate the derivatives for each parameter $(W^{(1)}, 
 \hat{y}(x^{d}) - y^{d} \; \; \footnote{This is not the general form, since it depends of the error function. To be honest, it is not clear to me if $\delta^{(n+2)}$ is $\frac{\partial J}{\partial \hat{y}}$ or $\frac{\partial J}{\partial  z^{n+1}}$}
 \end{equation}
 \begin{equation}\label{eq:8}
-\delta^{(k)}_{j} = \sum_{s=1}^{D_{k}}\delta^{(k+1)}_{j}W^{(k)}_{j,s} {f^{\prime}}^{(k-1)} (a^{(k)}_{j})
+\delta^{(k)}_{j} = \sum_{s=1}^{D_{k}}\delta^{(k+1)}_{s}W^{(k)}_{j,s} {f^{\prime}}^{(k-1)} (a^{(k)}_{j})
 \end{equation}
 with $j = 1, \dots, D_{(k-1)}$  and $k = 2, \dots, n+1$.
 \begin{equation}\label{eq:9}
@@ -133,7 +133,7 @@ For $i \in {1,\dots,D_{1}}$ and $j \in {1,\dots,D_{2}}$ we have
 
 For $j \in {1,\dots,D_{1}}$ we have
 \begin{align*}
-\delta^{(2)}_{j} & = \sum_{s=1}^{D_{2}}\delta^{(3)}W^{(2)}_{j,s} \sigma^{\prime} (a^{(2)}_{j})\\
+\delta^{(2)}_{j} & = \sum_{s=1}^{D_{2}}\delta^{(3)}_{s}W^{(2)}_{j,s} \sigma^{\prime} (a^{(2)}_{j})\\
 & = \sum_{s=1}^{D_{2}}(\hat{y}_{s} - y_{s})W^{(2)}_{j,s}\sigma^{\prime} (a^{(2)}_{j})\; .
 \end{align*}
 
