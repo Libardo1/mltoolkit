@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{bbm}
+\usepackage{bm}
 \usepackage[table]{xcolor}
 \newcommand{\wo}{\mathbbm{w}}
 
@@ -60,7 +61,7 @@ To apply SGD we need to calculate the derivatives for each parameter $(W^{(1)}, 
 \hat{y}(x^{d}) - y^{d} \; \; \footnote{This is not the general form, since it depends of the error function. To be honest, it is not clear to me if $\delta^{(n+2)}$ is $\frac{\partial J}{\partial \hat{y}}$ or $\frac{\partial J}{\partial  z^{n+1}}$}
 \end{equation}
 \begin{equation}\label{eq:8}
-\delta^{(k)}_{j} = \sum_{s=1}^{D_{k}}\delta^{(k+1)}W^{(k)}_{j,s} {f^{\prime}}^{(k-1)} (a^{(k)}_{j})
+\delta^{(k)}_{j} = \sum_{s=1}^{D_{k}}\delta^{(k+1)}_{j}W^{(k)}_{j,s} {f^{\prime}}^{(k-1)} (a^{(k)}_{j})
 \end{equation}
 with $j = 1, \dots, D_{(k-1)}$  and $k = 2, \dots, n+1$.
 \begin{equation}\label{eq:9}
@@ -75,6 +76,21 @@ with $i = 1, \dots, D_{(k-1)}$, $j = 1, \dots, D_{(k)}$ and $k = 1, \dots, n+1$.
 \end{equation}
 with $j = 1, \dots, D_{(k)}$ and $k = 1, \dots, n+1$.
 
+To make things simpler, we can simplify the equations (\ref{eq:8}),(\ref{eq:9}) and (\ref{eq:11}) using vector notation. For $A,B \in \mathbb{R}^{n,m}$ $A\circ B$ is the  Hadamard product, i.e., $(A\circ B)_{i,j} = A_{i,j}B_{i,j}$ . Similarly for $u,v \in \mathbb{R}^{n}$, $(v\circ u)_{i} = v_{i}u_{i}$. Hence,  
+
+\begin{equation}\label{eq:8sim}
+\bm{\delta^{(k)} = (\delta^{(k+1)} {(W^{(k)})}^{T}) \circ {f^{\prime}}^{(k-1)} (a^{(k)})}
+\end{equation}
+
+\begin{equation}\label{eq:9sim}
+\bm{\frac{\partial J}{\partial  W^{(k)}} = {a^{(k)} \delta^{(k+1)}}^{T}}
+\end{equation}
+
+\begin{equation}\label{eq:11sim}
+\bm{\frac{\partial J}{\partial  b^{(k)}} =  \delta^{(k+1)}}
+\end{equation}
+
+\pagebreak
 
 \section{Example}
 
@@ -85,9 +101,9 @@ with $j = 1, \dots, D_{(k)}$ and $k = 1, \dots, n+1$.
 \caption{A neural network with $1$ hidden layer}
 \label{example}
 \end{figure}
-Figure \ref{example} shows a neural network with a single hidden layer. The only non-linear function is the sigmoid function $\sigma$ and the function in the output layer is the sigmoid function. As a error mesure we use cross entropy, assuming $y \in \mathbb{R}^{D_2}$ is an one-hot vector. Hence
+Figure \ref{example} shows a neural network with a single hidden layer. The only non-linear function is the sigmoid function $\sigma$ and the function in the output layer is the sigmoid function. As a error measure we use cross entropy, assuming $y \in \mathbb{R}^{D_2}$ is an one-hot vector. Hence
 \begin{equation}\label{eq:12}
-z^{(1)}_i = \sum_{s=1}^{D_{x}}W^{(1)}_{si} x_{s} + b^{(1)}_{i}  \; {\small \text{ with }i = 1, \dots, D_{1}}
+z^{(1)}_i = \sum_{s=1}^{D_{x}}W^{(1)}_{s,i} x_{s} + b^{(1)}_{i}  \; {\small \text{ with }i = 1, \dots, D_{1}}
 \end{equation}
 \begin{equation}\label{eq:13}
 a^{(2)}_i = \sigma(z^{(1)}_i )  \; {\small \text{ with }i = 1, \dots,D_{1}}
