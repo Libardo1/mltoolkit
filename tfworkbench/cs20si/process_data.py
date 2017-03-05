@@ -18,7 +18,6 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 # Parameters for downloading data
 DOWNLOAD_URL = 'http://mattmahoney.net/dc/'
 EXPECTED_BYTES = 31344016
-# DATA_FOLDER = '/home/felipe/Desktop/mltoolkit/tfworkbench/cs20si/data/'
 DATA_FOLDER = currentdir + '/data/'
 FILE_NAME = 'text8.zip'
 
