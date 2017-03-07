@@ -8,6 +8,19 @@ def newlogname():
     return os.path.join(log_basedir, run_label)
 
 
+def get_log_path(time_stamp, train_param=None, checkpoint=False):
+    if checkpoint:
+        log_basedir = './checkpoints'
+        if train_param is None:
+            sufix_label = time_stamp
+        else:
+            sufix_label = str(train_param)
+    else:
+        log_basedir = './graphs'
+        sufix_label = time_stamp
+    return os.path.join(log_basedir, sufix_label)
+
+
 class Example(object):
     """Abstract class for create examples. self.log_path stores
     the directory for tensorboar visualization """
